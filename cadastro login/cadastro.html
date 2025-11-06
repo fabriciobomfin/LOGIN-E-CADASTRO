@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Cadastro</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Fonte Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        html { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white flex items-center justify-center min-h-screen p-4">
+
+    <div class="w-full max-w-md">
+        <div class="bg-white dark:bg-gray-800 shadow-2xl rounded-2xl p-6 sm:p-10">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-bold text-blue-600 dark:text-blue-400">Criar Conta</h1>
+                <p class="text-gray-600 dark:text-gray-300 mt-2">Preencha os campos abaixo para se cadastrar.</p>
+            </div>
+
+            <form id="cadastroForm" class="space-y-6">
+                <div>
+                    <label for="username" class="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-200">Nome de Usuário</label>
+                    <input type="text" id="username" name="username" placeholder="Seu nome de usuário" required
+                        class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition">
+                </div>
+
+                <div>
+                    <label for="email" class="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-200">E-mail</label>
+                    <input type="email" id="email" name="email" placeholder="seu.email@exemplo.com" required
+                        class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition">
+                </div>
+
+                <div>
+                    <label for="senha" class="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-200">Senha</label>
+                    <input type="password" id="senha" name="senha" placeholder="••••••••" required
+                        class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition">
+                </div>
+
+                <div>
+                    <button type="submit"
+                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 transition transform hover:-translate-y-0.5 shadow-lg">
+                        Cadastrar
+                    </button>
+                </div>
+            </form>
+
+            <div class="text-center mt-6">
+                <p class="text-sm text-gray-600 dark:text-gray-400">
+                    Já tem uma conta? 
+                    <a href="./login.html" class="font-medium text-blue-600 dark:text-blue-400 hover:underline">Entrar</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('cadastroForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const senha = document.getElementById('senha').value.trim();
+
+            if (!username || !email || !senha) {
+                alert('Preencha todos os campos!');
+                return;
+            }
+
+            // Salva usuário no localStorage
+            const usuario = { username, email, senha };
+            localStorage.setItem('usuarioCadastrado', JSON.stringify(usuario));
+
+            alert('Cadastro realizado com sucesso!');
+            window.location.href = './login.html';
+        });
+    </script>
+</body>
+</html>
